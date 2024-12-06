@@ -15,7 +15,7 @@ export class RegisterComponent {
     email: '',
     contrasena: '',
     pais: '',
-    creditos: 0
+    creditos: 100
   };
 
   confirmContrasena = '';

@@ -1,11 +1,11 @@
 export interface IUsuario {
 
-    id?: number,
-    nombre: string,
+    id_usuario?: number,
+    nombre?: string,
     email: string,
     contrasena: string,
-    pais: string,
-    creditos: number,
+    pais?: string,
+    creditos?: number,
     fecha_registro?: Date
 
 }
