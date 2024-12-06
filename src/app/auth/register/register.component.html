@@ -1,0 +1,63 @@
+<div class="min-h-screen flex items-center justify-center">
+    <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-8 w-full max-w-md">
+        <h2 class="text-2xl font-bold mb-6 text-gray-900 dark:text-white text-center">Crear cuenta</h2>
+        <form class="max-w-md mx-auto" (ngSubmit)="onSubmit()" #registerForm="ngForm">
+            <!-- Nombre -->
+            <div class="relative z-0 w-full mb-5 group">
+                <input type="text" name="nombre" id="nombre" [(ngModel)]="user.nombre" #nombre="ngModel"
+                    class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                    placeholder=" " required />
+                <label for="nombre"
+                    class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10">Nombre</label>
+                <div *ngIf="nombre.invalid && nombre.touched" class="text-red-500 text-sm mt-1">Este campo es requerido.
+                </div>
+            </div>
+
+            <!-- Email -->
+            <div class="relative z-0 w-full mb-5 group">
+                <input type="email" name="email" id="email" [(ngModel)]="user.email" #email="ngModel"
+                    class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                    placeholder=" " required email />
+                <label for="email"
+                    class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10">Correo
+                    electrónico</label>
+                <div *ngIf="email.invalid && email.touched" class="text-red-500 text-sm mt-1">Ingresa un correo válido.
+                </div>
+            </div>
+
+            <!-- Contraseña -->
+            <div class="relative z-0 w-full mb-5 group">
+                <input type="password" name="contrasena" id="contrasena" [(ngModel)]="user.contrasena"
+                    #contrasena="ngModel"
+                    class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                    placeholder=" " required minlength="6" />
+                <label for="contrasena"
+                    class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10">Contraseña</label>
+                <div *ngIf="contrasena.invalid && contrasena.touched" class="text-red-500 text-sm mt-1">
+                    La contraseña debe tener al menos 6 caracteres.
+                </div>
+            </div>
+
+            <!-- País -->
+            <div class="relative z-0 w-full mb-5 group">
+                <select name="pais" id="pais" [(ngModel)]="user.pais" #pais="ngModel"
+                    class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-blue-700 dark:border-gray-600 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                    required>
+                    <option value="" disabled selected>Seleccione su país</option>
+                    <option value="Mexico">México</option>
+                    <option value="USA">Estados Unidos</option>
+                    <option value="Canada">Canadá</option>
+                </select>
+                <label for="pais"
+                    class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10">País</label>
+                <div *ngIf="pais.invalid && pais.touched" class="text-red-500 text-sm mt-1">Seleccione un país.</div>
+            </div>
+
+            <button type="submit"
+                class="w-full bg-blue-600 hover:bg-blue-700 text-white font-medium text-sm rounded-lg px-4 py-2 focus:outline-none focus:ring-4 focus:ring-blue-300 dark:focus:ring-blue-800"
+                [disabled]="registerForm.invalid">Registrar cuenta</button>
+        </form>
+        <p class="mt-6 text-sm text-gray-600 dark:text-gray-400 text-center">¿Ya tienes una cuenta? <a href="/login"
+                class="text-blue-600 hover:underline dark:text-blue-500">Iniciar sesión</a></p>
+    </div>
+</div>
