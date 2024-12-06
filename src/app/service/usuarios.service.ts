@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { IUsuario } from '../models/i-usuario';
+import { catchError } from 'rxjs';
+import { throwError } from 'rxjs';
 
 
 @Injectable({
@@ -15,9 +17,14 @@ export class UsuarioService {
   registerUsuario(usuario: IUsuario): Observable<IUsuario> {
     return this.http.post<IUsuario>(`${this.apiUrl}/register`, usuario);
   }
-
+  
   loginUsuario(usuario: IUsuario): Observable<IUsuario> {
-    return this.http.post<IUsuario>(`${this.apiUrl}/login`, usuario);
+    return this.http.post<IUsuario>(`${this.apiUrl}/login`, usuario).pipe(
+      catchError((error) => {
+        console.error('Error en la solicitud de login', error);
+        return throwError(error);
+      })
+    );
   }
   // Obtener un usuario por ID
   obtenerUsuario(id: number): Observable<IUsuario> {

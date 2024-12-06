@@ -9,27 +9,21 @@ import Swal from 'sweetalert2';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
-  
+
+  // Inicializamos el objeto user sin id_usuario definido
   user: IUsuario = {
-    id_usuario: 0,
+    id_usuario: 0,  // No es necesario iniciar con 0 si no tenemos el valor
     email: '',
     contrasena: '',
   };
 
   constructor(private usuarioService: UsuarioService) {}
 
-  submitted = false;
-
   onSubmit() {
-    console.log('Formulario enviado:', this.user);
     this.loginUsuario();
   }
 
   loginUsuario() {
-    // Agrega un log para verificar los datos que se envían
-    console.log('Datos enviados al backend:', this.user);
-
-    // Verifica que los campos no estén vacíos
     if (!this.user.email || !this.user.contrasena) {
       Swal.fire({
         icon: 'error',
@@ -43,24 +37,31 @@ export class LoginComponent {
       next: (response) => {
         console.log('Respuesta del backend:', response);
 
-        if (response && response.id_usuario !== undefined) {
-          localStorage.setItem('userId', response.id_usuario.toString());
+        if (response && response.id_usuario) {
+          // Asignamos el id_usuario dinámicamente después de recibir la respuesta del backend
+          this.user.id_usuario = response.id_usuario;
+
+          // Guarda el ID del usuario en localStorage
+          localStorage.setItem('userId', this.user.id_usuario.toString());
+
+          // Muestra el mensaje de éxito con SweetAlert
           Swal.fire({
             icon: 'success',
             title: 'Bienvenido',
-            text: `¡Hola, ${response.nombre}!`,
+            text: `¡Hola, ${response.email || this.user.email}!`,
             timer: 3000,
             timerProgressBar: true
           });
 
-          this.submitted = true;
-          this.user.email = ''; // Limpia el campo de email
-          this.user.contrasena = ''; // Limpia el campo de contraseña
+          // Limpia los campos después del inicio de sesión
+          this.user.email = ''; 
+          this.user.contrasena = ''; 
         } else {
+          console.log('ID del usuario no encontrado en la respuesta.');
           Swal.fire({
             icon: 'error',
             title: 'Error',
-            text: 'No se pudo recuperar el ID del usuario.'
+            text: 'No se ha encontrado el usuario.'
           });
         }
       },
@@ -73,22 +74,5 @@ export class LoginComponent {
         console.error('Error al iniciar sesión:', error);
       }
     });
-  }
-
-  // Método para recuperar el id_usuario desde el localStorage
-  getUserIdFromLocalStorage(): number | null {
-    const userId = localStorage.getItem('userId');
-    if (userId) {
-      const id = Number(userId); // Convierte el valor a número
-      if (!isNaN(id)) {
-        return id;
-      } else {
-        console.error('El ID recuperado no es un número válido.');
-        return null;
-      }
-    } else {
-      console.log('No se encontró userId en el localStorage.');
-      return null;
-    }
   }
 }
