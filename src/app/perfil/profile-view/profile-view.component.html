@@ -1,0 +1,55 @@
+<div class="bg-white antialiased">
+    <div class="container mx-auto my-20">
+        <div>
+            <div class="bg-white relative shadow rounded-lg w-6/6 md:w-5/6 lg:w-4/6 xl:w-3/6 mx-auto">
+                <!-- Imagen de perfil -->
+                <div class="flex justify-center">
+                    <img src="https://avatars0.githubusercontent.com/u/35900628?v=4" alt=""
+                        class="rounded-full mx-auto absolute -top-20 w-32 h-32 shadow-md border-4 border-white transition duration-200 transform hover:scale-110">
+                </div>
+
+                <div class="mt-20">
+                    <!-- Información del usuario -->
+                    <h1 class="font-bold text-center text-3xl text-gray-900">{{ user.nombre }}</h1>
+                    <p class="text-center text-sm text-gray-400 font-medium">Créditos: {{ user.creditos }}</p>
+                    <p class="text-center text-sm text-gray-400 font-medium">{{ user.email }}</p>
+                    <p class="text-center text-sm text-gray-400 font-medium">{{ user.pais }}</p>
+                    <p class="text-center text-sm text-gray-400 font-medium">Registrado: {{ user.fecha_registro }}</p>
+
+                    <!-- Crear un nuevo objeto -->
+                    <div class="my-5 px-6">
+                        <a href="#"
+                            class="text-white block rounded-lg text-center font-medium leading-6 px-6 py-3 bg-blue-600 hover:bg-blue-700 transition">Crear
+                            nuevo objeto</a>
+                    </div>
+
+                    <!-- Botones principales -->
+                    <div class="my-5 px-6 flex justify-around gap-4">
+                        <a (click)="actualizarUsuario()" class="flex-1 text-white block rounded-lg text-center font-medium leading-6 px-4 py-2 bg-yellow-500 hover:bg-yellow-600 transition cursor-pointer">
+                            Editar Cuenta
+                        </a>
+                        <a (click)="eliminarUsuario()" class="flex-1 text-white block rounded-lg text-center font-medium leading-6 px-4 py-2 bg-red-500 hover:bg-red-600 transition cursor-pointer">
+                            Eliminar Cuenta
+                        </a>
+                        <a (click)="cerrarSesion()" class="flex-1 text-white block rounded-lg text-center font-medium leading-6 px-4 py-2 bg-gray-600 hover:bg-gray-700 transition cursor-pointer">
+                            Cerrar Sesión
+                        </a>
+                    </div>
+
+                    <!-- Objetos del usuario -->
+                    <div class="w-full">
+                        <h3 class="font-medium text-gray-900 text-left px-6">TUS OBJETOS</h3>
+                        <div class="mt-5 w-full flex flex-col items-center overflow-hidden text-sm">
+                            <a href="#"
+                                class="w-full border-t border-gray-100 text-gray-600 py-4 pl-6 pr-3 block hover:bg-gray-100 transition duration-150">
+                                <img src="https://avatars0.githubusercontent.com/u/35900628?v=4" alt=""
+                                    class="rounded-full h-6 shadow-md inline-block mr-2"> Updated his status
+                                <span class="text-gray-500 text-xs">24 min ago</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
