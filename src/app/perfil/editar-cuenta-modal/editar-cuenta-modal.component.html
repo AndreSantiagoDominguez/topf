@@ -1,0 +1,32 @@
+<h1 mat-dialog-title>Editar Cuenta</h1>
+<div mat-dialog-content>
+  <form [formGroup]="form">
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>Nombre</mat-label>
+      <input matInput formControlName="nombre">
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>Email</mat-label>
+      <input matInput formControlName="email" type="email">
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>País</mat-label>
+      <mat-select formControlName="pais">
+        <mat-option value="Mexico">México</mat-option>
+        <mat-option value="United States">Estados Unidos</mat-option>
+        <mat-option value="Canada">Canadá</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>Contraseña</mat-label>
+      <input matInput formControlName="contrasena" type="password">
+    </mat-form-field>
+  </form>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="cerrar()">Cancelar</button>
+  <button mat-button color="primary" (click)="guardar()" [disabled]="!form.valid">Guardar</button>
+</div>

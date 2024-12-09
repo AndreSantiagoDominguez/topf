@@ -12,6 +12,8 @@ import { FooterComponent } from './shared/footer/footer.component';
 import { RegisterComponent } from './auth/register/register.component';
 import { LoginComponent } from './auth/login/login.component';
 import { ObjetosComponent } from './objects/objetos/objetos.component';
+import { PerfilModule } from './perfil/perfil.module';
+
 
 @NgModule({
   declarations: [
@@ -32,7 +34,8 @@ import { ObjetosComponent } from './objects/objetos/objetos.component';
     RouterLink,
     RouterModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    PerfilModule
     
   ],
   providers: [],

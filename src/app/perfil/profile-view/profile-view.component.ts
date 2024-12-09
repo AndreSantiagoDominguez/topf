@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UsuarioService } from '../../service/usuarios.service';
 import { IUsuario } from '../../models/i-usuario';
 import Swal from 'sweetalert2';
+import { MatDialog } from '@angular/material/dialog'; import { EditarCuentaModalComponent } from '../editar-cuenta-modal/editar-cuenta-modal.component'; // otros imports...
 
 @Component({
   selector: 'app-profile-view',
@@ -17,8 +18,9 @@ export class ProfileViewComponent implements OnInit {
   };
 
   constructor(
-    private usuarioService: UsuarioService
-  ) {}
+    private usuarioService: UsuarioService,
+    private dialog: MatDialog
+  ) { }
 
   ngOnInit() {
     this.obtenerUsuario();
@@ -41,19 +43,31 @@ export class ProfileViewComponent implements OnInit {
   }
 
 
-  //abrirEditarCuentaModal() { const dialogRef = this.dialog.open(EditarCuentaModalComponent, { width: '400px', data: { ...this.user } }); dialogRef.afterClosed().subscribe(result => { if (result) { this.actualizarUsuario(result); } }); }
-  
+  abrirEditarCuentaModal() {
+    const dialogRef = this.dialog.open(EditarCuentaModalComponent,
+      { width: '400px', data: { ...this.user } });
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.actualizarUsuario(result);
+      }
+    });
+  }
 
-  actualizarUsuario() {
+
+
+  actualizarUsuario(data: any) {
     const userId = localStorage.getItem('userId');
     if (userId) {
-      this.usuarioService.actualizarUsuario(+userId, this.user).subscribe({
-        next: (data) => {
+      this.usuarioService.actualizarUsuario(+userId, data).subscribe({
+        next: (updatedUser) => {
+          this.user = updatedUser;
           Swal.fire('Éxito', 'La cuenta ha sido actualizada correctamente', 'success');
-        },
-        error: (error) => {
+        }, error: (error) => {
           console.error('Error al actualizar el usuario', error);
-          Swal.fire('Error', 'No se pudo actualizar la cuenta', 'error');
+          Swal.fire(
+            'Error',
+            'No se pudo actualizar la cuenta',
+            'error');
         }
       });
     }
@@ -76,10 +90,10 @@ export class ProfileViewComponent implements OnInit {
     }
   }
 
-  cerrarSesion() { 
+  cerrarSesion() {
     localStorage.removeItem('userId');
-     Swal.fire(
+    Swal.fire(
       'Sesión cerrada', 'Has cerrado sesión correctamente', 'success'
     ); // Redirigir al usuario a la página de inicio de sesión o página principal 
-    }
+  }
 }
