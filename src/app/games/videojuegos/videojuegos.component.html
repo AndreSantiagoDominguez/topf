@@ -1,0 +1,25 @@
+<div class="container mx-auto my-20">
+  <!-- Botón para añadir un nuevo videojuego -->
+  <div class="mb-6">
+    <button (click)="abrirAgregarVideojuegoModal()" class="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700">Agregar Nuevo Videojuego</button>
+  </div>
+
+  <!-- Cards de videojuegos existentes -->
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+    <div class="bg-white shadow-md rounded-lg overflow-hidden" *ngFor="let videojuego of videojuegos">
+      <img
+        [src]="obtenerImagenPorGenero(videojuego.genero)"
+        alt="{{ videojuego.nombre }}"
+        class="w-full h-48 object-cover"
+      />
+      <div class="p-4">
+        <h2 class="text-xl font-semibold text-gray-800">{{ videojuego.nombre }}</h2>
+        <p class="text-sm text-gray-600 mt-2">{{ videojuego.genero }}</p>
+        <div class="mt-4">
+          <a [routerLink]="['/objetos/videojuego', videojuego.id_videojuego]"
+            class="inline-block bg-blue-600 text-white text-center font-medium rounded-lg px-6 py-2 hover:bg-blue-700 transition">Explorar</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

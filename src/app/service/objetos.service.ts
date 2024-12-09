@@ -14,7 +14,7 @@ export class ObjetoService {
 
   // Crear nuevo objeto
   crearObjeto(objeto: IObjeto): Observable<IObjeto> {
-    return this.http.post<IObjeto>(`${this.apiUrl}`, objeto);
+    return this.http.post<IObjeto>(`${this.apiUrl}/`, objeto);
   }
 
   // Obtener objeto por ID

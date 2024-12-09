@@ -1,0 +1,41 @@
+<div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-8 w-full max-w-md">
+    <h2 class="text-2xl font-bold mb-6 text-gray-900 dark:text-white text-center">Agregar Nuevo Videojuego</h2>
+    <form [formGroup]="videojuegoForm">
+      <div class="mb-5">
+        <label class="block text-sm font-medium text-gray-700 dark:text-gray-300">Nombre</label>
+        <input formControlName="nombre" 
+          class="mt-1 block w-full px-4 py-2 text-sm text-gray-900 bg-gray-50 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white" 
+        />
+      </div>
+      <div class="mb-5">
+        <label class="block text-sm font-medium text-gray-700 dark:text-gray-300">Género</label>
+        <mat-select formControlName="genero" class="mt-1 block w-full">
+          <mat-option *ngFor="let genero of generos" [value]="genero">{{ genero }}</mat-option>
+        </mat-select>
+      </div>
+      <div class="mb-5">
+        <label class="block text-sm font-medium text-gray-700 dark:text-gray-300">Plataforma</label>
+        <mat-select formControlName="plataforma" class="mt-1 block w-full">
+          <mat-option *ngFor="let plataforma of plataformas" [value]="plataforma">{{ plataforma }}</mat-option>
+        </mat-select>
+      </div>
+      <div class="mb-5">
+        <label class="block text-sm font-medium text-gray-700 dark:text-gray-300">Año de Lanzamiento</label>
+        <input formControlName="anio_lanzamiento" type="number" 
+          class="mt-1 block w-full px-4 py-2 text-sm text-gray-900 bg-gray-50 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white" 
+        />
+      </div>
+      <div class="mb-5">
+        <label class="block text-sm font-medium text-gray-700 dark:text-gray-300">Desarrolladora</label>
+        <mat-select formControlName="desarrolladora" class="mt-1 block w-full">
+          <mat-option *ngFor="let desarrolladora of desarrolladoras" [value]="desarrolladora">{{ desarrolladora }}</mat-option>
+        </mat-select>
+      </div>
+      <div mat-dialog-actions class="flex justify-end mt-4">
+        <button mat-button (click)="cerrar()" class="bg-gray-500 hover:bg-gray-600 text-white rounded-lg px-4 py-2 mr-2">Cancelar</button>
+        <button mat-button color="primary" (click)="guardar()" [disabled]="!videojuegoForm.valid" 
+          class="bg-blue-600 hover:bg-blue-700 text-white rounded-lg px-4 py-2">Guardar</button>
+      </div>
+    </form>
+  </div>
+  

@@ -1,0 +1,52 @@
+.full-width {
+    width: 100%;
+  }
+  
+  .mat-form-field {
+    margin-bottom: 1rem;
+  }
+  
+  .mat-dialog-content {
+    padding: 20px 24px;
+  }
+  
+  .mat-dialog-actions {
+    display: flex;
+    justify-content: flex-end;
+    padding: 8px 24px;
+  }
+  
+  button {
+    margin: 0 5px;
+  }
+  
+  h1 {
+    font-size: 24px;
+    margin-bottom: 15px;
+    text-align: center;
+  }
+  
+  .dark .bg-white {
+    background-color: #1f2937; /* dark:bg-gray-800 */
+  }
+  
+  .dark .text-gray-900 {
+    color: #f9fafb; /* dark:text-white */
+  }
+  
+  .dark .text-gray-700 {
+    color: #d1d5db; /* dark:text-gray-300 */
+  }
+  
+  .dark .border-gray-300 {
+    border-color: #4b5563; /* dark:border-gray-600 */
+  }
+  
+  .dark .bg-gray-50 {
+    background-color: #374151; /* dark:bg-gray-700 */
+  }
+  
+  .dark .text-gray-600 {
+    color: #9ca3af; /* dark:text-gray-400 */
+  }
+  

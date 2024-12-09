@@ -13,6 +13,8 @@ import { RegisterComponent } from './auth/register/register.component';
 import { LoginComponent } from './auth/login/login.component';
 import { ObjetosComponent } from './objects/objetos/objetos.component';
 import { PerfilModule } from './perfil/perfil.module';
+import { GamesModule } from './games/games.module';
+import { ObjectsModule } from './objects/objects.module';
 
 
 @NgModule({
@@ -22,7 +24,6 @@ import { PerfilModule } from './perfil/perfil.module';
     LoginComponent,
     NavbarComponent,
     FooterComponent,
-    ObjetosComponent,
 
     
   ],
@@ -35,7 +36,9 @@ import { PerfilModule } from './perfil/perfil.module';
     RouterModule,
     FormsModule,
     HttpClientModule,
-    PerfilModule
+    PerfilModule,
+    GamesModule,
+    ObjectsModule
     
   ],
   providers: [],

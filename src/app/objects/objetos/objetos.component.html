@@ -1,1 +1,63 @@
-<p>objetos works!</p>
+<div class="container mx-auto my-20">
+    <!-- Formulario para añadir un nuevo objeto -->
+    <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-8 w-full max-w-md mx-auto mb-10">
+      <h2 class="text-2xl font-bold mb-6 text-gray-900 dark:text-white text-center">Agregar Nuevo Objeto</h2>
+      <form (ngSubmit)="agregarObjeto()">
+        <div class="mb-5">
+          <label for="nombre" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Nombre</label>
+          <input [(ngModel)]="nombre" name="nombre" type="text" id="nombre" 
+            class="mt-1 block w-full px-4 py-2 text-sm text-gray-900 bg-gray-50 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white" 
+            placeholder="Nombre del objeto" required />
+        </div>
+        <div class="mb-5">
+          <label for="descripcion" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Descripción</label>
+          <textarea [(ngModel)]="descripcion" name="descripcion" id="descripcion" 
+            class="mt-1 block w-full px-4 py-2 text-sm text-gray-900 bg-gray-50 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white" 
+            placeholder="Descripción del objeto"></textarea>
+        </div>
+        <div class="mb-5">
+          <label for="rareza" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Rareza</label>
+          <select [(ngModel)]="rareza" name="rareza" id="rareza" 
+            class="mt-1 block w-full px-4 py-2 text-sm text-gray-900 bg-gray-50 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white" required>
+            <option value="común">Común</option>
+            <option value="raro">Raro</option>
+            <option value="épico">Épico</option>
+            <option value="legendario">Legendario</option>
+          </select>
+        </div>
+        <div class="mb-5">
+          <label for="condicion" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Condición</label>
+          <select [(ngModel)]="condicion" name="condicion" id="condicion" 
+            class="mt-1 block w-full px-4 py-2 text-sm text-gray-900 bg-gray-50 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white" required>
+            <option value="nuevo">Nuevo</option>
+            <option value="usado">Usado</option>
+          </select>
+        </div>
+        <div class="mb-5">
+          <label for="valor" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Valor</label>
+          <input [(ngModel)]="valor" name="valor" type="number" id="valor" 
+            class="mt-1 block w-full px-4 py-2 text-sm text-gray-900 bg-gray-50 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white" 
+            placeholder="Valor del objeto" required />
+        </div>
+        <button type="submit" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-medium text-sm rounded-lg px-4 py-2 focus:outline-none focus:ring-4 focus:ring-blue-300 dark:focus:ring-blue-800">
+          Agregar Objeto
+        </button>
+      </form>
+    </div>
+  
+    <!-- Lista de objetos existentes -->
+    <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-8">
+      <h2 class="text-2xl font-bold mb-6 text-gray-900 dark:text-white text-center">Objetos Existentes</h2>
+      <ul class="list-disc pl-5">
+        <li *ngFor="let objeto of objetos" class="mb-2">
+          <h3 class="text-xl font-semibold text-gray-800 dark:text-white">{{ objeto.nombre }}</h3>
+          <p class="text-sm text-gray-600 dark:text-gray-400">{{ objeto.descripcion }}</p>
+          <p class="text-sm text-gray-600 dark:text-gray-400">Rareza: {{ objeto.rareza }}</p>
+          <p class="text-sm text-gray-600 dark:text-gray-400">Condición: {{ objeto.condicion }}</p>
+          <p class="text-sm text-gray-600 dark:text-gray-400">Valor: {{ objeto.valor }}</p>
+          <button (click)="iniciarIntercambio(objeto)" class="mt-2 bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-lg">Intercambiar</button>
+        </li>
+      </ul>
+    </div>
+  </div>
+  
