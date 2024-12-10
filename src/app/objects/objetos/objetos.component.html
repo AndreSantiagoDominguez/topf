@@ -6,19 +6,19 @@
         <div class="mb-5">
           <label for="nombre" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Nombre</label>
           <input [(ngModel)]="nombre" name="nombre" type="text" id="nombre" 
-            class="mt-1 block w-full px-4 py-2 text-sm text-gray-900 bg-gray-50 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white" 
+            class="mt-1 block w-full px-4 py-2 text-sm text-gray-900 bg-gray-50 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:bg-gray-700 dark:border-gray-600 dark:text-white" 
             placeholder="Nombre del objeto" required />
         </div>
         <div class="mb-5">
           <label for="descripcion" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Descripción</label>
           <textarea [(ngModel)]="descripcion" name="descripcion" id="descripcion" 
-            class="mt-1 block w-full px-4 py-2 text-sm text-gray-900 bg-gray-50 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white" 
+            class="mt-1 block w-full px-4 py-2 text-sm text-gray-900 bg-gray-50 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:bg-gray-700 dark:border-gray-600 dark:text-white" 
             placeholder="Descripción del objeto"></textarea>
         </div>
         <div class="mb-5">
           <label for="rareza" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Rareza</label>
           <select [(ngModel)]="rareza" name="rareza" id="rareza" 
-            class="mt-1 block w-full px-4 py-2 text-sm text-gray-900 bg-gray-50 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white" required>
+            class="mt-1 block w-full px-4 py-2 text-sm text-gray-900 bg-gray-50 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:bg-gray-700 dark:border-gray-600 dark:text-white" required>
             <option value="común">Común</option>
             <option value="raro">Raro</option>
             <option value="épico">Épico</option>
@@ -28,7 +28,7 @@
         <div class="mb-5">
           <label for="condicion" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Condición</label>
           <select [(ngModel)]="condicion" name="condicion" id="condicion" 
-            class="mt-1 block w-full px-4 py-2 text-sm text-gray-900 bg-gray-50 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white" required>
+            class="mt-1 block w-full px-4 py-2 text-sm text-gray-900 bg-gray-50 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:bg-gray-700 dark:border-gray-600 dark:text-white" required>
             <option value="nuevo">Nuevo</option>
             <option value="usado">Usado</option>
           </select>
@@ -36,7 +36,7 @@
         <div class="mb-5">
           <label for="valor" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Valor</label>
           <input [(ngModel)]="valor" name="valor" type="number" id="valor" 
-            class="mt-1 block w-full px-4 py-2 text-sm text-gray-900 bg-gray-50 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white" 
+            class="mt-1 block w-full px-4 py-2 text-sm text-gray-900 bg-gray-50 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:bg-gray-700 dark:border-gray-600 dark:text-white" 
             placeholder="Valor del objeto" required />
         </div>
         <button type="submit" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-medium text-sm rounded-lg px-4 py-2 focus:outline-none focus:ring-4 focus:ring-blue-300 dark:focus:ring-blue-800">
@@ -55,7 +55,38 @@
           <p class="text-sm text-gray-600 dark:text-gray-400">Rareza: {{ objeto.rareza }}</p>
           <p class="text-sm text-gray-600 dark:text-gray-400">Condición: {{ objeto.condicion }}</p>
           <p class="text-sm text-gray-600 dark:text-gray-400">Valor: {{ objeto.valor }}</p>
+          
+          <!-- Selección del tipo de intercambio -->
+          <div class="mb-5">
+            <label for="tipoIntercambio" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Tipo de Intercambio</label>
+            <select [(ngModel)]="tipoIntercambio" name="tipoIntercambio" id="tipoIntercambio" 
+              class="mt-1 block w-full px-4 py-2 text-sm text-gray-900 bg-gray-50 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:bg-gray-700 dark:border-gray-600 dark:text-white" required>
+              <option value="credito">Crédito</option>
+            </select>
+          </div>
+          
+          <!-- Propuesta de intercambio según tipo seleccionado -->
+          <div *ngIf="tipoIntercambio === 'credito'" class="mb-5">
+            <label for="creditoOfrecido" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Crédito Ofrecido</label>
+            <input [(ngModel)]="creditoOfrecido" name="creditoOfrecido" type="number" id="creditoOfrecido" 
+              class="mt-1 block w-full px-4 py-2 text-sm text-gray-900 bg-gray-50 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:bg-gray-700 dark:border-gray-600 dark:text-white" 
+              placeholder="Cantidad de crédito ofrecido" required />
+          </div>
+  
           <button (click)="iniciarIntercambio(objeto)" class="mt-2 bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-lg">Intercambiar</button>
+          
+          <!-- Lista de intercambios pendientes para cada objeto -->
+          <div *ngIf="intercambios.length > 0">
+            <div *ngFor="let intercambio of intercambios" class="mt-4">
+              <div *ngIf="intercambio.id_objeto_a === objeto.id_objeto || intercambio.id_objeto_b === objeto.id_objeto">
+                <p class="text-sm text-gray-600 dark:text-gray-400">Intercambio pendiente con {{ intercambio.id_usuario_ofert }}</p>
+                <div *ngIf="intercambio.estado === 'pendiente' && intercambio.id_usuario_recept === id_usuario">
+                  <button (click)="aceptarIntercambio(intercambio)" class="mt-2 bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg">Aceptar</button>
+                  <button (click)="rechazarIntercambio(intercambio)" class="mt-2 bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-lg">Rechazar</button>
+                </div>
+              </div>
+            </div>
+          </div>
         </li>
       </ul>
     </div>
